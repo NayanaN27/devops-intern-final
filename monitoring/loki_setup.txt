@@ -1,0 +1,56 @@
+Grafana Loki Monitoring Setup
+
+1. Simple Direct Container Setup
+
+2. Starting Loki
+
+   Step 1: Create custom network
+       docker network create monitoring
+
+   Step 2: Start all services on the same network
+       # Start the application
+       docker run --name devops-final-app -d --restart unless-stopped --network monitoring devops-final:latest
+
+       # Start Loki
+       docker run -d --name=loki --network monitoring -p 3100:3100 grafana/loki:2.9.0
+
+       # Start Grafana
+       docker run -d --name=grafana --network monitoring -p 3000:3000 -e GF_SECURITY_ADMIN_PASSWORD=admin grafana/grafana:latest
+
+       # Start Promtail for log collection
+       docker run -d --name=promtail --network monitoring -v //var/run/docker.sock:/var/run/docker.sock:ro grafana/promtail:2.9.0
+
+   Step 3: Verify services
+       # Check all containers are running
+       docker ps
+
+       # Test Loki connectivity
+       curl http://localhost:3100/ready
+
+       # Verify network setup
+       docker network inspect monitoring
+
+3. Log Forwarding Setup
+
+4. Configuring Grafana Data Source
+
+   Steps to Configure Loki in Grafana
+
+   - Access Grafana: http://localhost:3000
+   - Login: admin/admin
+
+   Add Data Source:
+   - Go to Configuration → Data Sources
+   - Click "Add data source"
+   - Select "Loki"
+   - URL: http://loki:3100
+   - Click "Save & test" - should show "Data source connected and labels found"
+
+5. Commands Used to View Logs (Via Grafana Explore)
+
+   Access Explore:
+   - In Grafana left sidebar, click "Explore" (compass icon)
+   - Ensure "Loki" is selected as data source
+
+   Query Examples Used:
+   {job="devops-final"}
