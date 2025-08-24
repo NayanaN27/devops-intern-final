@@ -5,3 +5,13 @@
 
 ## Overview
 This repo implements a small DevOps pipeline using Linux, Docker, GitHub Actions CI, Nomad, and monitoring with Loki.
+
+
+## Docker 
+This project includes a Dockerfile to containerize "hello.py".
+
+# To Build theDocker image use the below command 
+docker build -t devops-final:latest .
+
+# To run the container 
+docker run devops-final:latest
