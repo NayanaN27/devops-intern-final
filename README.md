@@ -27,3 +27,6 @@ nomad job run nomad/hello.nomad
 
 # Check Status
 nomad job status hello
+
+## Monitoring with Grafana Loki
+<img width="1898" height="981" alt="image" src="https://github.com/user-attachments/assets/dd35068c-1b2c-4263-a658-5a996305aad0" />
