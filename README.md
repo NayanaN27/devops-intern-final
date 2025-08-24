@@ -19,3 +19,11 @@ docker run devops-final:latest
 
 ## Status Badge
 ![CI](https://github.com/NayanaN27/devops-intern-final/actions/workflows/ci.yml/badge.svg)
+
+## Nomad Deployment
+
+# Run the Job
+nomad job run nomad/hello.nomad
+
+# Check Status
+nomad job status hello
