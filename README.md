@@ -15,3 +15,7 @@ docker build -t devops-final:latest .
 
 # To run the container 
 docker run devops-final:latest
+
+
+## Status Badge
+![CI](https://github.com/NayanaN27/devops-intern-final/actions/workflows/ci.yml/badge.svg)
